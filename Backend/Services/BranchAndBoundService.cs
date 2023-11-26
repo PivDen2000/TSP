@@ -1,10 +1,12 @@
+using Backend.Domain;
 using Backend.Services.Interfaces;
 
 namespace Backend.Services;
 
-public class AlgorithmService : IAlgorithmService
+public class BranchAndBoundService : ISolverService
 {
-    public int DoWork()
+
+    public List<string> Solve(Graph graph)
     {
         throw new NotImplementedException();
     }

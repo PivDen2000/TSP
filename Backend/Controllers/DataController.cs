@@ -1,3 +1,4 @@
+using Backend.Domain;
 using Backend.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,19 +9,20 @@ namespace Backend.Controllers;
 public class DataController : ControllerBase
 {
     private readonly ILogger<DataController> _logger;
-    private readonly IAlgorithmService _algorithmService;
+    private readonly ISolverService _solverService;
 
-    public DataController(ILogger<DataController> logger, IAlgorithmService algorithmService)
+    public DataController(ILogger<DataController> logger, ISolverService solverService)
     {
         _logger = logger;
-        _algorithmService = algorithmService;
+        _solverService = solverService;
     }
 
     [HttpGet(Name = "GetData")]
     public ActionResult<object> Get([FromBody] object request)
     {
         var data = request;
-        var dataAfterFuncUsing = _algorithmService.DoWork();
+        var graph = new Graph(1);
+        var dataAfterFuncUsing = _solverService.Solve(graph);
         return Ok(dataAfterFuncUsing);
     }
 }
