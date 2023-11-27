@@ -1,11 +1,9 @@
 using Backend.Domain;
 using Backend.Services.Interfaces;
+namespace Backend.Services.Algorithms;
 
-namespace Backend.Services;
-
-public class CoordinateDescentService : ISolverService
+public class CoordinateDescentAlgorithm : IAlgorithm
 {
-
     public List<string> Solve(Graph graph)
     {
         throw new NotImplementedException();
