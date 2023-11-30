@@ -35,6 +35,16 @@ public class Graph
         _adjacencyMatrix[index2, index1] = distance;
     }
 
+    public int GetCityIndex(string city)
+    {
+        if (!_cityIndexMap.ContainsKey(city))
+        {
+            throw new ArgumentException("City not found in the graph.");
+        }
+
+        return _cityIndexMap[city];
+    }
+
     public int GetDistance(string city1, string city2)
     {
         if (!_cityIndexMap.ContainsKey(city1) || !_cityIndexMap.ContainsKey(city2))
