@@ -8,6 +8,7 @@ public enum AlgorithmType
     AcceleratedGradient,
     BranchAndBound,
     CoordinateDescent,
+    Greedy,
     Serdjukov,
     SerdjukovImproved,
 }
@@ -26,10 +27,11 @@ public class AlgorithmFactory : IAlgorithmFactory
         return algorithmType switch
         {
             AlgorithmType.AcceleratedGradient => _serviceProvider.GetRequiredService<AcceleratedGradientAlgorithm>(),
+            AlgorithmType.BranchAndBound => _serviceProvider.GetRequiredService<BranchAndBoundAlgorithm>(),
             AlgorithmType.CoordinateDescent => _serviceProvider.GetRequiredService<CoordinateDescentAlgorithm>(),
+            AlgorithmType.Greedy => _serviceProvider.GetRequiredService<GreedyAlgorithm>(),
             AlgorithmType.Serdjukov => _serviceProvider.GetRequiredService<SerdjukovAlgorithm>(),
             AlgorithmType.SerdjukovImproved => _serviceProvider.GetRequiredService<SerdjukovImprovedAlgorithm>(),
-            AlgorithmType.BranchAndBound => _serviceProvider.GetRequiredService<BranchAndBoundAlgorithm>(),
             _ => throw new ArgumentException("Invalid algorithm type", nameof(algorithmType))
         };
     }

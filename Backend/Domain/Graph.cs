@@ -44,4 +44,9 @@ public class Graph
 
         return _adjacencyMatrix[_cityIndexMap[city1], _cityIndexMap[city2]];
     }
+
+    public IEnumerable<string> GetCities()
+    {
+        return _cityIndexMap.Keys;
+    }
 }

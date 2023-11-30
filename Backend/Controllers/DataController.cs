@@ -20,13 +20,14 @@ namespace Backend.Controllers
         [HttpPost(Name = "SolveGraph")]
         public ActionResult<object> SolveGraph([FromBody] GraphSolveRequest request)
         {
-            var graph = CreateGraph(request.Cities, request.AdjacencyMatrix);
-            var solverService = _algorithmFactory.CreateSolverService(request.AlgorithmType);
+            var inputData = request.InputRequest;
+            var graph = CreateGraph(inputData.Cities, inputData.AdjacencyMatrix);
+            var solverService = _algorithmFactory.CreateSolverService(inputData.AlgorithmType);
             var solution = solverService.Solve(graph);
 
             var response = new
             {
-                InputRequest = request,
+                InputRequest = inputData,
                 Solution = new
                 {
                     OptimalPath = solution,
@@ -36,6 +37,7 @@ namespace Backend.Controllers
 
             return Ok(response);
         }
+
 
         private static int CalculateTotalDistance(List<string> path, Graph graph)
         {

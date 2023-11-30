@@ -1,8 +1,14 @@
 using Backend.Services;
 using Backend.Services.Algorithms;
 using Backend.Services.Interfaces;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddControllers().AddJsonOptions(options =>
+{
+    options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+});
 
 // Add services to the container.
 
@@ -15,10 +21,11 @@ builder.Services.AddCors();
 builder.Services.AddScoped<IAlgorithmFactory, AlgorithmFactory>();
 
 builder.Services.AddScoped<AcceleratedGradientAlgorithm>();
+builder.Services.AddScoped<BranchAndBoundAlgorithm>();
 builder.Services.AddScoped<CoordinateDescentAlgorithm>();
+builder.Services.AddScoped<GreedyAlgorithm>();
 builder.Services.AddScoped<SerdjukovAlgorithm>();
 builder.Services.AddScoped<SerdjukovImprovedAlgorithm>();
-builder.Services.AddScoped<BranchAndBoundAlgorithm>();
 
 var app = builder.Build();
 

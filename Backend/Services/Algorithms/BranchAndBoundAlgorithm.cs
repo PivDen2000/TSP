@@ -1,4 +1,3 @@
-//Artem Bondarets
 using Backend.Domain;
 using Backend.Services.Interfaces;
 namespace Backend.Services.Algorithms;
