@@ -22,8 +22,29 @@ namespace Backend.Controllers
         {
             var graph = CreateGraph(request.Cities, request.AdjacencyMatrix);
             var solverService = _algorithmFactory.CreateSolverService(request.AlgorithmType);
-            var dataAfterFuncUsing = solverService.Solve(graph);
-            return Ok(dataAfterFuncUsing);
+            var solution = solverService.Solve(graph);
+
+            var response = new
+            {
+                InputRequest = request,
+                Solution = new
+                {
+                    OptimalPath = solution,
+                    TotalDistance = CalculateTotalDistance(solution, graph)
+                }
+            };
+
+            return Ok(response);
+        }
+
+        private static int CalculateTotalDistance(List<string> path, Graph graph)
+        {
+            int totalDistance = 0;
+            for (int i = 0; i < path.Count - 1; i++)
+            {
+                totalDistance += graph.GetDistance(path[i], path[i + 1]);
+            }
+            return totalDistance;
         }
 
         private static Graph CreateGraph(List<string> cities, List<List<int>> adjacencyMatrix)

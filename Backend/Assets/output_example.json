@@ -1,0 +1,16 @@
+{
+  "InputRequest": {
+    "Cities": [ "CityA", "CityB", "CityC", "CityD" ],
+    "AdjacencyMatrix": [
+      [ 0, 20, 30, 10 ],
+      [ 20, 0, 15, 35 ],
+      [ 30, 15, 0, 25 ],
+      [ 10, 35, 25, 0 ]
+    ],
+    "AlgorithmType": "AcceleratedGradient"
+  },
+  "Solution": {
+    "OptimalPath": [ "CityA", "CityD", "CityB", "CityC", "CityA" ],
+    "TotalDistance": 90
+  }
+}
