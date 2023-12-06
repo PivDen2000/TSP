@@ -1,0 +1,7 @@
+.container {
+  transition: 0.5s;
+  &:hover {
+    cursor: pointer;
+    color: cornflowerblue;
+  }
+}
