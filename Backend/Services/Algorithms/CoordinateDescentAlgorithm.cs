@@ -36,8 +36,8 @@ public class CoordinateDescentAlgorithm : IAlgorithm
             _bestCost = maxes.Max();
             int maxind = maxes.ToList().IndexOf(_bestCost);
             maxIndex = new int[] { maxind, maxIndexes[maxind] };
-            costMatrix[maxIndex[0], maxIndex[1]] = 0;
-            costMatrix[maxIndex[1], maxIndex[0]] = 0;
+            costMatrix[maxIndex[0]][maxIndex[1]] = 0;
+            costMatrix[maxIndex[1]][maxIndex[0]] = 0;
             _bestPath.Add(cities[maxIndex[0]]);
             _bestPath.Add(cities[maxIndex[1]]);
         }
@@ -45,13 +45,13 @@ public class CoordinateDescentAlgorithm : IAlgorithm
         while (n < numberOfCities)
         {
             int a = graph.GetCityIndex(_bestPath[0]);
-            int b = graph.GetCityIndex(_bestPath[-1]);
+            int b = graph.GetCityIndex(_bestPath[_bestPath.Count - 1]);
             int maxCostA = costMatrix[a].Max();
             int maxCostB = costMatrix[b].Max();
-            if (maxCostA >  maxCostB)
+            if (maxCostA > maxCostB)
             {
                 _bestCost += maxCostA;
-                _bestPath.Insert(0, cities[costMatrix[i].ToList().IndexOf(maxCostA)]);
+                _bestPath.Insert(0, cities[costMatrix[a].ToList().IndexOf(maxCostA)]);
                 for (int i = 0; i < numberOfCities; i++)
                 {
                     costMatrix[i, a] = 0;
@@ -60,7 +60,7 @@ public class CoordinateDescentAlgorithm : IAlgorithm
             } else
             {
                 _bestCost += maxCostB;
-                _bestPath.Add(cities[costMatrix[i].ToList().IndexOf(maxCostB)]);
+                _bestPath.Add(cities[costMatrix[b].ToList().IndexOf(maxCostB)]);
                 for (int i = 0; i < numberOfCities; i++)
                 {
                     costMatrix[i, b] = 0;
@@ -69,6 +69,7 @@ public class CoordinateDescentAlgorithm : IAlgorithm
             }
             n++;
         }
+        _bestPath.Add(_bestPath.First());
         return _bestPath;
     }
 }
