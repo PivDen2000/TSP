@@ -51,7 +51,7 @@ public class CoordinateDescentAlgorithm : IAlgorithm
             if (maxCostA >  maxCostB)
             {
                 _bestCost += maxCostA;
-                _bestPath.Insert(0, cities[costMatrix[i].ToList().IndexOf(maxCostA);]);
+                _bestPath.Insert(0, cities[costMatrix[i].ToList().IndexOf(maxCostA)]);
                 for (int i = 0; i < numberOfCities; i++)
                 {
                     costMatrix[i, a] = 0;
@@ -60,7 +60,7 @@ public class CoordinateDescentAlgorithm : IAlgorithm
             } else
             {
                 _bestCost += maxCostB;
-                _bestPath.Add(cities[costMatrix[i].ToList().IndexOf(maxCostB);]);
+                _bestPath.Add(cities[costMatrix[i].ToList().IndexOf(maxCostB)]);
                 for (int i = 0; i < numberOfCities; i++)
                 {
                     costMatrix[i, b] = 0;
