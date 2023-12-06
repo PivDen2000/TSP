@@ -1,5 +1,7 @@
 ﻿using Backend.Services;
 
+namespace Backend.Domain;
+
 public class GraphSolveRequest
 {
     public InputRequestData InputRequest { get; set; }
