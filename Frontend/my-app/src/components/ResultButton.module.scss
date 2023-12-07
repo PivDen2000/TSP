@@ -1,0 +1,29 @@
+.container {
+  margin-bottom: 30px;
+  transition: 0.5s;
+  &:hover {
+    cursor: pointer;
+    color: cornflowerblue;
+  }
+}
+
+.dropdown {
+  margin-left: 20px;
+  appearance: none;
+  height: 36px;
+  background: #004892;
+  color: white;
+  border-radius: 20px;
+  width: 300px;
+  text-align: center;
+}
+
+label {
+  display: flex;
+  align-self: center;
+}
+
+option {
+  border-radius: 20px;
+  height: 20px;
+}
