@@ -15,7 +15,11 @@ public class CoordinateDescentAlgorithm : IAlgorithm
         List<string> cities = graph.GetCities().ToList();
         int numberOfCities = cities.Count;
 
-        int[][] costMatrix = new int[numberOfCities][numberOfCities];
+        int[][] costMatrix = new int[numberOfCities][];
+        for (int i = 0; i < numberOfCities; i++)
+        {
+            costMatrix[i] = new int[numberOfCities];
+        }
         foreach (var city1 in cities)
         {
             foreach (var city2 in cities)
@@ -54,8 +58,8 @@ public class CoordinateDescentAlgorithm : IAlgorithm
                 _bestPath.Insert(0, cities[costMatrix[a].ToList().IndexOf(maxCostA)]);
                 for (int i = 0; i < numberOfCities; i++)
                 {
-                    costMatrix[i, a] = 0;
-                    costMatrix[a, i] = 0;
+                    costMatrix[i][a] = 0;
+                    costMatrix[a][i] = 0;
                 }
             } else
             {
@@ -63,8 +67,8 @@ public class CoordinateDescentAlgorithm : IAlgorithm
                 _bestPath.Add(cities[costMatrix[b].ToList().IndexOf(maxCostB)]);
                 for (int i = 0; i < numberOfCities; i++)
                 {
-                    costMatrix[i, b] = 0;
-                    costMatrix[b, i] = 0;
+                    costMatrix[i][b] = 0;
+                    costMatrix[b][i] = 0;
                 }
             }
             n++;
